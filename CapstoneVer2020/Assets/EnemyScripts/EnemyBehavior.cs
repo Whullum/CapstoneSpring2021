@@ -12,12 +12,14 @@ public class EnemyBehavior : MonoBehaviour
         {
             // Teleport Enemy for now just for testing
             gameObject.transform.position = new Vector3(Random.Range(-10, 10), Random.Range(-4, 4), 0);
-            Debug.Log("Attack Collision");
+            Debug.Log("Attack Hitbox Collision");
             //Destroy(gameObject);
         }
         else if (collision.gameObject.layer == 6)
         {
-            Debug.Log("Other Collision");
+            // If colliding witha player, damage the player
+            collision.gameObject.GetComponent<PlayerBehavior>().GetDamaged();
+            Debug.Log("Player Collision");
         }
     }
 }
