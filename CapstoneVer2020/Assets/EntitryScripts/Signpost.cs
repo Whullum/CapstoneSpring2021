@@ -17,14 +17,18 @@ public class Signpost : MonoBehaviour
     [SerializeField]
     private DialougeManager dialogueManager;    // Reference to the dialogue script 
 
+    private PlayerInteraction playerInteraction;
+
     // Start is called before the first frame update
     void Start()
     {
-        dialogueWindow = dialogueManager.textDisplay.gameObject;                                            // Get the dialogueWindow
+        dialogueWindow = dialogueManager.textDisplay.gameObject;    // Get the dialogueWindow
         dialogueWindow.SetActive(false);
 
-        activated = false;                                                                                  // Set activated to false to start off the object
-        dialogueManager.textFile = this.textFile;                                                           // Set the dialogue script's text file to the one given in this object
+        dialogueManager.skipButton.onClick.AddListener(SkipButton);
+
+        activated = false;                                          // Set activated to false to start off the object
+        dialogueManager.textFile = this.textFile;                   // Set the dialogue script's text file to the one given in this object
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,7 +36,9 @@ public class Signpost : MonoBehaviour
         if (collision.gameObject.layer == 6)
         {
             Debug.Log("SIGN - recieved player");
-            collision.gameObject.GetComponent<PlayerInteraction>().interactObject = this;
+
+            playerInteraction = collision.gameObject.GetComponent<PlayerInteraction>();
+            playerInteraction.interactObject = this;
         }
     }
 
@@ -41,7 +47,7 @@ public class Signpost : MonoBehaviour
         if (collision.gameObject.layer == 6)
         {
             Debug.Log("SIGN - exited player");
-            collision.gameObject.GetComponent<PlayerInteraction>().interactObject = null;
+            playerInteraction = null;
         }
     }
 
@@ -53,19 +59,24 @@ public class Signpost : MonoBehaviour
         // Check if the object has been activated yet or not
         if (activated == true)
         {
+            // if it has, continue with typing logic
             dialogueManager.NextSentence();
 
             // If the dialogue is done, then hide the dialogueWindow again
             // NOTE: instead of checking every frame, might be better to just have a single event when dialouge ends
-            if (dialogueManager && dialogueManager.done == true)
+            if (dialogueManager.done == true)
             {
                 activated = false;
                 dialogueWindow.SetActive(false);
                 dialogueManager.done = false;
+                playerInteraction.currentlyInteracting = false;
             }
         }
         else
         {
+            // Let the player know it's interacting with something
+            playerInteraction.currentlyInteracting = true;
+
             // Set activated to true
             activated = true;
 
@@ -78,5 +89,11 @@ public class Signpost : MonoBehaviour
             // Start the typing coroutine in Dialogue
             StartCoroutine(dialogueManager.Type());
         }
+    }
+
+    public void SkipButton()
+    {
+        dialogueManager.done = true;
+        Interaction();
     }
 }

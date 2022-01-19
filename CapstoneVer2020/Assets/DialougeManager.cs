@@ -22,7 +22,8 @@ public class DialougeManager : MonoBehaviour
     
     public float typingSpeed = .1f;          // Speed of typing
     
-    public bool done;                       // Determines if the entire dialogue is finished or not
+    public bool done;                        // Determines if the entire dialogue is finished or not
+    public Button skipButton;
     
     private int index;                       // Index of current sentece that is being displayed
     private bool finished;                   // Determines if text has finished typing
@@ -35,7 +36,9 @@ public class DialougeManager : MonoBehaviour
         textDisplay.text = "";
         finished = false;
         done = false;
-    
+
+        textDisplay.gameObject.SetActive(false);
+
         //instance = FMODUnity.RuntimeManager.CreateInstance("event:/UI/Dialouge/eklee-KeyPressMac04");
     
         // Load text file data from a test file
@@ -131,13 +134,13 @@ public class DialougeManager : MonoBehaviour
                 textDisplay.text = "";      // Reset the text display to blank text
                 StartCoroutine(Type());     // Start the coroutine again
             }
-            // If there is no more dialogue, display an empty text string and set done to true
             else
             {
+                // If there is no more dialogue, display an empty text string and set done to true
                 finished = false;
                 done = true;
-                index = 0;
                 textDisplay.text = "";
+                index = 0;
             }
         }
         // If the current sentence is not finished, display the complete text and set finished to true

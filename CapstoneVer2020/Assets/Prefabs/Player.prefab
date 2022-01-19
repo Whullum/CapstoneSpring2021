@@ -342,6 +342,7 @@ MonoBehaviour:
   lastMovedDirection: {x: 0, y: 0}
   spriteDirection: {x: 0, y: 0}
   rotationAngle: 0
+  playerInteraction: {fileID: 3586818045906437355}
 --- !u!114 &6118557086398230828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,6 +405,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   interactObject: {fileID: 0}
+  currentlyInteracting: 0
 --- !u!114 &4453979152282480348
 MonoBehaviour:
   m_ObjectHideFlags: 0

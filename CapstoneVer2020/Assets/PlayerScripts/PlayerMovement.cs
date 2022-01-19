@@ -31,6 +31,10 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 spriteDirection;
     public float rotationAngle = 0;
 
+
+    // Reference to other player scripts
+    [SerializeField]
+    private PlayerInteraction playerInteraction;
     private void Start()
     {
         // Enable actions for movement
@@ -40,14 +44,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        // Move the player
-        Movement();
+        if (playerInteraction.currentlyInteracting == false)
+        {
+            // Move the player
+            Movement();
 
-        // Do dash mechanic if applicable
-        DashMovement(lastMovedDirection);
+            // Do dash mechanic if applicable
+            DashMovement(lastMovedDirection);
 
-        // Draw debug line for testing
-        Debug.DrawLine(currentPosition, currentPosition + moveDirection.normalized * moveForce, Color.red);
+            // Draw debug line for testing
+            //Debug.DrawLine(currentPosition, currentPosition + moveDirection.normalized * moveForce, Color.red);
+        }
     }
 
     /// <summary>

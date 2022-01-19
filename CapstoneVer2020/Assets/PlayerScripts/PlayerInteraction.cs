@@ -11,9 +11,12 @@ public class PlayerInteraction : MonoBehaviour
     // TODO: replace with interact entity class so that more than just signposts work
     public Signpost interactObject;
 
+    public bool currentlyInteracting;
+
     private void Start()
     {
         interactAction.Enable();
+        currentlyInteracting = false;
     }
 
     private void Update()
@@ -23,7 +26,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (interactObject != null)
             {
-                Debug.Log("Insteraction dectected");
+                Debug.Log("Interaction dectected");
                 interactObject.Interaction();
             }
             else
