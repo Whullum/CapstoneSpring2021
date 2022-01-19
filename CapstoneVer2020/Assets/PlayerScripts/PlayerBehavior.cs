@@ -16,17 +16,17 @@ public class PlayerBehavior : MonoBehaviour
 
     public void GetDamaged()
     {
-        // Deincrement health
-        health--;
-
         // Check if health is 0
-        if (health == 0)
+        if (health < 0)
         {
             // If it is, display game over for now
             Debug.Log("GAME OVER");
         }
         else
         {
+            // Deincrement health
+            health--;
+
             // Change the color of hearts image to white (just testing for now)
             heartImage[health].color = Color.white;
         }

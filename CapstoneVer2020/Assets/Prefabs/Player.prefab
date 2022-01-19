@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6118557086398230818}
   - component: {fileID: 6118557086398230829}
   - component: {fileID: 6118557086398230828}
+  - component: {fileID: 3586818045906437355}
   - component: {fileID: 4453979152282480348}
   m_Layer: 6
   m_Name: Player
@@ -373,6 +374,36 @@ MonoBehaviour:
   playerMovement: {fileID: 6118557086398230829}
   attackHitbox: {fileID: 7076250674536401204, guid: 55403114f72174140ac1688bd3e2180a, type: 3}
   boundsVector: {x: 0, y: 0, z: 0}
+--- !u!114 &3586818045906437355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6118557086398230822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6867de14e9e74041bea7264eb54b264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactAction:
+    m_Name: Interact
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1e42495b-b64d-487c-a160-90fed5f9b2d8
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: e80b4450-bb7b-4eec-9362-56a8f9725350
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Interact
+      m_Flags: 0
+    m_Flags: 0
+  interactObject: {fileID: 0}
 --- !u!114 &4453979152282480348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,5 +417,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  numOfHearts: 0
   heartImage: []
