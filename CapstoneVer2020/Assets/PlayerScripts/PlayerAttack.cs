@@ -23,14 +23,6 @@ public class PlayerAttack : MonoBehaviour
         boundsVector = GetComponent<Renderer>().bounds.size;
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    // Attack behavior
-    //    //if (playerBrain.currentPlayerState != PlayerStates.INTERACTING)
-    //    //    Attack();
-    //}
-
     /// <summary>
     /// Sword swipe attack behavior
     /// TODO: Add rotation behavior for attacking in different directions

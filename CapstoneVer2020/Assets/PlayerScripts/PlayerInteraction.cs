@@ -18,23 +18,6 @@ public class PlayerInteraction : MonoBehaviour
         currentlyInteracting = false;
     }
 
-    //private void Update()
-    //{
-    //    // Interact with an object when the interact button has been pressed and an object exists to be interacted with
-    //    if (interactAction.triggered)
-    //    {
-    //        if (interactObject != null)
-    //        {
-    //            Debug.Log("Interaction dectected");
-    //            interactObject.Interaction();
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("No interaction");
-    //        }
-    //    }
-    //}
-
     public void ActivateInteraction()
     {
         // Interact with an object when the interact button has been pressed and an object exists to be interacted with

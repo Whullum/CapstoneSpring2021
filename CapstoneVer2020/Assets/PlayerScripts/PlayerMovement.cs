@@ -40,22 +40,6 @@ public class PlayerMovement : MonoBehaviour
         dashAction.Enable();
     }
 
-    //private void Update()
-    //{
-    //    //if (playerBrain.playerInteraction.currentlyInteracting == false)
-    //    if (playerBrain.currentPlayerState != PlayerStates.INTERACTING)
-    //    {
-    //        // Move the player
-    //        Movement();
-
-    //        // Do dash mechanic if applicable
-    //        DashMovement(lastMovedDirection);
-
-    //        // Draw debug line for testing
-    //        //Debug.DrawLine(currentPosition, currentPosition + moveDirection.normalized * moveForce, Color.red);
-    //    }
-    //}
-
     /// <summary>
     /// Movement behavior for player
     /// </summary>
