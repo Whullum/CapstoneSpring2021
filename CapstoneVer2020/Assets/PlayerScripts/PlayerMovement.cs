@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     public Rigidbody2D rigidbody;
 
+    public PlayerBrain playerBrain;
+
     // Basic movement variables
     private const float moveForce = 5.0f;
     private Vector3 facingDirectionVector;
@@ -31,10 +33,6 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 spriteDirection;
     public float rotationAngle = 0;
 
-
-    // Reference to other player scripts
-    [SerializeField]
-    private PlayerInteraction playerInteraction;
     private void Start()
     {
         // Enable actions for movement
@@ -42,25 +40,26 @@ public class PlayerMovement : MonoBehaviour
         dashAction.Enable();
     }
 
-    private void Update()
-    {
-        if (playerInteraction.currentlyInteracting == false)
-        {
-            // Move the player
-            Movement();
+    //private void Update()
+    //{
+    //    //if (playerBrain.playerInteraction.currentlyInteracting == false)
+    //    if (playerBrain.currentPlayerState != PlayerStates.INTERACTING)
+    //    {
+    //        // Move the player
+    //        Movement();
 
-            // Do dash mechanic if applicable
-            DashMovement(lastMovedDirection);
+    //        // Do dash mechanic if applicable
+    //        DashMovement(lastMovedDirection);
 
-            // Draw debug line for testing
-            //Debug.DrawLine(currentPosition, currentPosition + moveDirection.normalized * moveForce, Color.red);
-        }
-    }
+    //        // Draw debug line for testing
+    //        //Debug.DrawLine(currentPosition, currentPosition + moveDirection.normalized * moveForce, Color.red);
+    //    }
+    //}
 
     /// <summary>
     /// Movement behavior for player
     /// </summary>
-    private void Movement()
+    public void Movement()
     {
         // Get last moved direction when moving or stopped moving
         // Done to preserve direction for attacks/graphics/movement
@@ -119,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     /// <param name="moveDirection"> Direction in which to dash towards</param>
     // Reference: https://www.youtube.com/watch?v=G3cGpnuzVHU
-    private void DashMovement(Vector2 moveDirection)
+    public void DashMovement(Vector2 moveDirection)
     {
         // Check if the player is dashing
         if (dashAction.triggered)
@@ -153,5 +152,14 @@ public class PlayerMovement : MonoBehaviour
                 isDashing = false;
             }
         }
+    }
+
+    public void StopMovement()
+    {
+        // Apply movement input with moveFOrce to get movement vector
+        moveDirection = moveActions.ReadValue<Vector2>() * 0;
+
+        // Apply movement to rigidbody
+        rigidbody.velocity = moveDirection;
     }
 }

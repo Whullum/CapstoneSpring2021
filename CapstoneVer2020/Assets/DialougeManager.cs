@@ -19,6 +19,8 @@ public class DialougeManager : MonoBehaviour
     public TextMeshProUGUI textDisplay;      // TextMeshPro object to display text
     public TextAsset textFile;               // The text file to use for dialouge
     public List<string> dialogue;            // Array of dialouge that will be shown to the player
+
+    public Entity currentEntity;             // The entity that is being interacted with
     
     public float typingSpeed = .1f;          // Speed of typing
     
@@ -37,7 +39,7 @@ public class DialougeManager : MonoBehaviour
         dialogue = new List<string>();
         textDisplay.text = "";
         finished = false;
-        done = false;
+        //done = false;
 
         textDisplay.gameObject.SetActive(false);
 
@@ -86,7 +88,7 @@ public class DialougeManager : MonoBehaviour
     /// </summary>
     public void LoadDataFromFile(TextAsset textFile)
     {
-        done = false;
+        //done = false;
 
         // Create a StringReader to read data from the text file
         StringReader reader = new StringReader(textFile.text);
@@ -99,6 +101,28 @@ public class DialougeManager : MonoBehaviour
             // Read a single line from the reader
             line = reader.ReadLine();
     
+            // Check if the string from line is empty or not
+            if (!(string.IsNullOrEmpty(line)))
+            {
+                // If there is data in the line, add it to the dialouge list
+                dialogue.Add(line);
+            }
+            else
+            {
+                // Otherwise, break out of the loop
+                break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Loads in dialouge data from a string array
+    /// </summary>
+    /// <param name="dialougeArray"> An array of strings to pull dialouge from </param>
+    public void LoadDataFromStringArray(string[] dialougeArray)
+    {
+        foreach(string line in dialougeArray)
+        {
             // Check if the string from line is empty or not
             if (!(string.IsNullOrEmpty(line)))
             {
@@ -126,6 +150,9 @@ public class DialougeManager : MonoBehaviour
         textDisplay.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Skips the current sentence and goes onto the nexrt one
+    /// </summary>
     public void SkipSentece()
     {
         textDisplay.text = dialogue[index];
@@ -156,10 +183,15 @@ public class DialougeManager : MonoBehaviour
             {
                 // If there is no more dialogue, display an empty text string and set done to true
                 finished = false;
-                done = true;
                 textDisplay.text = "";
                 index = 0;
+
+                textDisplay.gameObject.SetActive(false);
+                ClearData();
+
                 StopCoroutine(Type());
+
+                currentEntity.EndInteraction();
             }
         }
         // If the current sentence is not finished, display the complete text and set finished to true
@@ -169,12 +201,16 @@ public class DialougeManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Skip button skips all the dialouge for the speaker
+    /// </summary>
     public void SkipButton()
     {
         Debug.Log(index + " " + dialogue[index]);
 
-        textDisplay.text = "";
-        index = dialogue.Count - 1;
+        finished = true;            // mark this sentence as finished
+        textDisplay.text = "";      // reset the text display to show no text
+        index = dialogue.Count - 1; // go to the end of the dialouge array
 
         Debug.Log(index + " " + dialogue[index]);
 

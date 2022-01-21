@@ -8,8 +8,7 @@ public class PlayerAttack : MonoBehaviour
     [Header("Attack Action")]
     public InputAction attackAction;
 
-    // Note: will be better to put into a PlayerBrain type script to handle communication between player scripts 
-    public PlayerMovement playerMovement;
+    public PlayerBrain playerBrain;
 
     public GameObject attackHitbox;
     public Vector3 boundsVector;
@@ -25,31 +24,37 @@ public class PlayerAttack : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        // Attack behavior
-        Attack();
-    }
+    //void Update()
+    //{
+    //    // Attack behavior
+    //    //if (playerBrain.currentPlayerState != PlayerStates.INTERACTING)
+    //    //    Attack();
+    //}
 
     /// <summary>
     /// Sword swipe attack behavior
     /// TODO: Add rotation behavior for attacking in different directions
     /// </summary>
-    private void Attack()
+    public void Attack()
     {
         if (attackAction.triggered)
         {
-            // Instantiate the hitbox prefab
-            GameObject hitbox = Instantiate(attackHitbox, gameObject.transform.position + (Vector3)playerMovement.spriteDirection, Quaternion.identity);
-            
-            // Rotate hitbox in the correct direction
-            hitbox.transform.rotation = Quaternion.Euler(0, 0, playerMovement.rotationAngle);
-            
-            // Set reference to this script in the hitbox prefab
-            hitbox.GetComponent<AttackBehavior>().playerAttack = this;
+            if (playerBrain.playerInteraction.currentlyInteracting == false)
+            {
+                // Instantiate the hitbox prefab
+                GameObject hitbox = Instantiate(attackHitbox,
+                    gameObject.transform.position + (Vector3)playerBrain.playerMovement.spriteDirection,
+                    Quaternion.identity);
 
-            //GameObject hitbox = Instantiate(attackHitbox, gameObject.transform.position + boundsVector, Quaternion.Euler((Vector3)playerMovement.lastMovedDirection));
-            //Debug.Log("Attack!");
+                // Rotate hitbox in the correct direction
+                hitbox.transform.rotation = Quaternion.Euler(0, 0, playerBrain.playerMovement.rotationAngle);
+
+                // Set reference to this script in the hitbox prefab
+                hitbox.GetComponent<AttackBehavior>().playerAttack = this;
+
+                //GameObject hitbox = Instantiate(attackHitbox, gameObject.transform.position + boundsVector, Quaternion.Euler((Vector3)playerMovement.lastMovedDirection));
+                //Debug.Log("Attack!");
+            }
         }
     }
 }

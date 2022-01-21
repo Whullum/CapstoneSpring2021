@@ -14,7 +14,7 @@ public class AttackBehavior : MonoBehaviour
 
         // Stop player from moving whey they're attacking
         // This is disgusting, need to refactor after prototyping
-        playerAttack.playerMovement.rigidbody.velocity = Vector2.zero;
+        playerAttack.playerBrain.playerMovement.rigidbody.velocity = Vector2.zero;
 
         if (activeTime <= 0)
         {

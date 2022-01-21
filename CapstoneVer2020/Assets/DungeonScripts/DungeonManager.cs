@@ -10,7 +10,7 @@ public class DungeonManager : MonoBehaviour
     private void Start()
     {
         // Spawn a new dungeon room on startup
-        SpawnNewDungeonRoom();
+        //SpawnNewDungeonRoom();
     }
 
     /// <summary>

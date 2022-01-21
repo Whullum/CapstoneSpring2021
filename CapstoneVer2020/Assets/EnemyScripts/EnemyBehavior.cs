@@ -18,7 +18,7 @@ public class EnemyBehavior : MonoBehaviour
         else if (collision.gameObject.layer == 6)
         {
             // If colliding witha player, damage the player
-            collision.gameObject.GetComponent<PlayerBehavior>().GetDamaged();
+            collision.gameObject.GetComponent<PlayerBrain>().GetDamaged();
             Debug.Log("Player Collision");
         }
     }
