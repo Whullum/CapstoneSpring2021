@@ -441,7 +441,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.4678125
+  orthographic size: 9.248679
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -899,7 +899,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1141460617
 RectTransform:
@@ -1026,7 +1026,7 @@ MonoBehaviour:
   dialogue: []
   typingSpeed: 0.1
   done: 0
-  skipButton: {fileID: 0}
+  skipButton: {fileID: 435703329}
 --- !u!1 &1914216901
 GameObject:
   m_ObjectHideFlags: 0

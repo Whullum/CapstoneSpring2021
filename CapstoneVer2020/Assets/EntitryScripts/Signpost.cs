@@ -25,8 +25,6 @@ public class Signpost : MonoBehaviour
         dialogueWindow = dialogueManager.textDisplay.gameObject;    // Get the dialogueWindow
         dialogueWindow.SetActive(false);
 
-        dialogueManager.skipButton.onClick.AddListener(SkipButton);
-
         activated = false;                                          // Set activated to false to start off the object
         dialogueManager.textFile = this.textFile;                   // Set the dialogue script's text file to the one given in this object
     }
@@ -35,7 +33,7 @@ public class Signpost : MonoBehaviour
     {
         if (collision.gameObject.layer == 6)
         {
-            Debug.Log("SIGN - recieved player");
+            //Debug.Log("SIGN - recieved player");
 
             playerInteraction = collision.gameObject.GetComponent<PlayerInteraction>();
             playerInteraction.interactObject = this;
@@ -46,7 +44,7 @@ public class Signpost : MonoBehaviour
     {
         if (collision.gameObject.layer == 6)
         {
-            Debug.Log("SIGN - exited player");
+            //Debug.Log("SIGN - exited player");
             playerInteraction = null;
         }
     }
@@ -67,9 +65,9 @@ public class Signpost : MonoBehaviour
             if (dialogueManager.done == true)
             {
                 activated = false;
-                dialogueWindow.SetActive(false);
-                dialogueManager.done = false;
                 playerInteraction.currentlyInteracting = false;
+                dialogueWindow.SetActive(false);
+                dialogueManager.ClearData();
             }
         }
         else
@@ -89,11 +87,5 @@ public class Signpost : MonoBehaviour
             // Start the typing coroutine in Dialogue
             StartCoroutine(dialogueManager.Type());
         }
-    }
-
-    public void SkipButton()
-    {
-        dialogueManager.done = true;
-        Interaction();
     }
 }

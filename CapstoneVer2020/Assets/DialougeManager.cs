@@ -27,7 +27,9 @@ public class DialougeManager : MonoBehaviour
     
     private int index;                       // Index of current sentece that is being displayed
     private bool finished;                   // Determines if text has finished typing
-    
+
+    public int Index { get => index; set => index = value; }
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -84,6 +86,8 @@ public class DialougeManager : MonoBehaviour
     /// </summary>
     public void LoadDataFromFile(TextAsset textFile)
     {
+        done = false;
+
         // Create a StringReader to read data from the text file
         StringReader reader = new StringReader(textFile.text);
     
@@ -115,7 +119,18 @@ public class DialougeManager : MonoBehaviour
     public void ClearData()
     {
         dialogue.Clear();
+        finished = false;
         index = 0;
+        textDisplay.text = "";
+
+        textDisplay.gameObject.SetActive(false);
+    }
+
+    public void SkipSentece()
+    {
+        textDisplay.text = dialogue[index];
+        finished = true;
+        StopCoroutine(Type());
     }
     
     /// <summary>
@@ -132,6 +147,9 @@ public class DialougeManager : MonoBehaviour
                 finished = false;           // Set finished to false
                 index++;                    // Increment index to go to the next sentence
                 textDisplay.text = "";      // Reset the text display to blank text
+
+                Debug.Log(index + " " + dialogue[index]);
+
                 StartCoroutine(Type());     // Start the coroutine again
             }
             else
@@ -141,14 +159,25 @@ public class DialougeManager : MonoBehaviour
                 done = true;
                 textDisplay.text = "";
                 index = 0;
+                StopCoroutine(Type());
             }
         }
         // If the current sentence is not finished, display the complete text and set finished to true
         else
         {
-            StopCoroutine(Type());
-            textDisplay.text = dialogue[index];
-            finished = true;
+            SkipSentece();
         }
+    }
+
+    public void SkipButton()
+    {
+        Debug.Log(index + " " + dialogue[index]);
+
+        textDisplay.text = "";
+        index = dialogue.Count - 1;
+
+        Debug.Log(index + " " + dialogue[index]);
+
+        NextSentence();
     }
 }
