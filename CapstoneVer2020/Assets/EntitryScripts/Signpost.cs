@@ -20,25 +20,25 @@ public class Signpost : Entity
         dialogueManager.textFile = this.textFile;                   // Set the dialogue script's text file to the one given in this object
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == 6)
-        {
-            //Debug.Log("SIGN - recieved player");
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.layer == 6)
+    //    {
+    //        //Debug.Log("SIGN - recieved player");
 
-            playerInteraction = collision.gameObject.GetComponent<PlayerInteraction>();
-            playerInteraction.interactObject = this;
-        }
-    }
+    //        playerInteraction = collision.gameObject.GetComponent<PlayerInteraction>();
+    //        playerInteraction.interactObject = this;
+    //    }
+    //}
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == 6)
-        {
-            //Debug.Log("SIGN - exited player");
-            playerInteraction = null;
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.layer == 6)
+    //    {
+    //        //Debug.Log("SIGN - exited player");
+    //        playerInteraction = null;
+    //    }
+    //}
 
     /// <summary>
     /// Unhides the textbox to the player and displays text on the screen when interacted with
@@ -75,6 +75,11 @@ public class Signpost : Entity
 
     public override void EndInteraction()
     {
+        if (!dialogueManager.done)
+        {
+            dialogueManager.SkipButton();
+        }
+
         activated = false;
         playerInteraction.playerBrain.currentPlayerState = PlayerStates.NORMAL;
         //playerInteraction.currentlyInteracting = false;

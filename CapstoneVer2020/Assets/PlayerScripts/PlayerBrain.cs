@@ -21,6 +21,7 @@ public class PlayerBrain : MonoBehaviour
     public TextMeshProUGUI goldTextDisplay;
 
     public int health;
+    public int maxHealth;
     public int gold;
 
     public Image[] heartImage;
@@ -28,6 +29,7 @@ public class PlayerBrain : MonoBehaviour
     private void Start()
     {
         health = 3;
+        maxHealth = 3;
         gold = 0;
         currentPlayerState = PlayerStates.NORMAL;
 
@@ -70,6 +72,19 @@ public class PlayerBrain : MonoBehaviour
         goldTextDisplay.text = gold.ToString();
     }
 
+    public void RemoveGold(int goldToTake)
+    {
+        if (gold >= goldToTake)
+        {
+            gold -= goldToTake;
+            goldTextDisplay.text = gold.ToString();
+        }
+        else
+        {
+            Debug.Log("Not Enough Gold");
+        }
+    }
+
     public void GetDamaged()
     {
         // Check if health is 0
@@ -84,6 +99,19 @@ public class PlayerBrain : MonoBehaviour
             health--;
 
             // Change the color of hearts image to white (just testing for now)
+            heartImage[health].color = Color.white;
+        }
+    }
+
+    public void RecoverHealth()
+    {
+        if (health >= maxHealth)
+        {
+            Debug.Log("FULL HEALTH");
+        }
+        else
+        {
+            health++;
             heartImage[health].color = Color.white;
         }
     }

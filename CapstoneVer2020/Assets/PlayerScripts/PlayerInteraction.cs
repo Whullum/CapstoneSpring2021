@@ -11,7 +11,6 @@ public class PlayerInteraction : MonoBehaviour
     public PlayerBrain playerBrain;
     public bool currentlyInteracting;
 
-
     private void Start()
     {
         interactAction.Enable();

@@ -12,4 +12,24 @@ public abstract class Entity : MonoBehaviour
 
     // Entities can have ending actionas when interaction is complete
     public abstract void EndInteraction();
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 6)
+        {
+            //Debug.Log("SIGN - recieved player");
+
+            playerInteraction = collision.gameObject.GetComponent<PlayerInteraction>();
+            playerInteraction.interactObject = this;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 6)
+        {
+            //Debug.Log("SIGN - exited player");
+            playerInteraction = null;
+        }
+    }
 }
