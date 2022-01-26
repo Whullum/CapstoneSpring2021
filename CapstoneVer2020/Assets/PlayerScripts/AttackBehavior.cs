@@ -5,8 +5,9 @@ using UnityEngine;
 public class AttackBehavior : MonoBehaviour
 {
     public PlayerAttack playerAttack;
-
     private float activeTime = .12f;
+
+    public float hit;
 
     private void Update()
     {

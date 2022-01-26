@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int enemyHealth;
+    public int killCost;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

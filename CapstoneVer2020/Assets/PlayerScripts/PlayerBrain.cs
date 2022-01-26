@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine;
 
 public enum PlayerStates
@@ -17,14 +18,22 @@ public class PlayerBrain : MonoBehaviour
 
     public PlayerStates currentPlayerState;
 
+    public TextMeshProUGUI goldTextDisplay;
+
     public int health;
+    public int gold;
 
     public Image[] heartImage;
 
     private void Start()
     {
         health = 3;
+        gold = 0;
         currentPlayerState = PlayerStates.NORMAL;
+
+        playerAttack.playerBrain = this;
+        playerInteraction.playerBrain = this;
+        playerMovement.playerBrain = this;
     }
 
     private void Update()
@@ -53,6 +62,12 @@ public class PlayerBrain : MonoBehaviour
                 playerInteraction.ActivateInteraction();
                 break;
         }
+    }
+
+    public void GetGold(int goldToGive)
+    {
+        gold += goldToGive;
+        goldTextDisplay.text = gold.ToString();
     }
 
     public void GetDamaged()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
+    public int goldAwarded;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if enemy is colliding with a player hitbox object on the playerattack layer
@@ -12,6 +14,7 @@ public class EnemyBehavior : MonoBehaviour
         {
             // Teleport Enemy for now just for testing
             gameObject.transform.position = new Vector3(Random.Range(-10, 10), Random.Range(-4, 4), 0);
+            collision.gameObject.GetComponent<AttackBehavior>().playerAttack.playerBrain.GetGold(goldAwarded);
             Debug.Log("Attack Hitbox Collision");
             //Destroy(gameObject);
         }
