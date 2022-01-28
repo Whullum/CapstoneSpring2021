@@ -8,7 +8,7 @@ public class ShopManager : MonoBehaviour
 
     public void BuyHealth()
     {
-        if (playerBrain.health >= playerBrain.maxHealth)
+        if (playerBrain.health < playerBrain.maxHealth)
         {
             playerBrain.RemoveGold(5);
 

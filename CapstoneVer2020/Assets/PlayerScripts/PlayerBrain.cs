@@ -111,8 +111,8 @@ public class PlayerBrain : MonoBehaviour
         }
         else
         {
+            heartImage[health].color = Color.red;
             health++;
-            heartImage[health].color = Color.white;
         }
     }
 }
