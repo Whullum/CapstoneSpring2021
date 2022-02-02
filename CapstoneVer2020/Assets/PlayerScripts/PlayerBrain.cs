@@ -99,7 +99,7 @@ public class PlayerBrain : MonoBehaviour
             health--;
 
             // Change the color of hearts image to white (just testing for now)
-            heartImage[health].color = Color.white;
+            heartImage[health].color = Color.black;
         }
     }
 
@@ -111,7 +111,7 @@ public class PlayerBrain : MonoBehaviour
         }
         else
         {
-            heartImage[health].color = Color.red;
+            heartImage[health].color = Color.white;
             health++;
         }
     }

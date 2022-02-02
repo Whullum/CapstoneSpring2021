@@ -28,7 +28,7 @@ public class PlayerBehavior : MonoBehaviour
             health--;
 
             // Change the color of hearts image to white (just testing for now)
-            heartImage[health].color = Color.white;
+            heartImage[health].color = Color.black;
         }
     }
 }
