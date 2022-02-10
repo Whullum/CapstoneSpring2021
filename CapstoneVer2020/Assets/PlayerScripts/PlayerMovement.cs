@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing;
 
     // Position variables
-    private Vector2 currentPosition;
+    //private Vector2 currentPosition;
     private Vector2 moveDirection;
     public Vector2 lastMovedDirection = new Vector2(1, 0);
     public Vector2 spriteDirection;
@@ -43,7 +43,8 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Movement behavior for player
     /// </summary>
-    public void Movement()
+    /// <returns> The vector that the player is moving towards </returns>
+    public Vector2 Movement()
     {
         // Get last moved direction when moving or stopped moving
         // Done to preserve direction for attacks/graphics/movement
@@ -55,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Get current position
-        currentPosition = gameObject.transform.position;
+        playerBrain.position = gameObject.transform.position;
 
         // Apply movement input with moveFOrce to get movement vector
         moveDirection = moveActions.ReadValue<Vector2>() * moveForce;
@@ -94,7 +95,9 @@ public class PlayerMovement : MonoBehaviour
         gameObject.transform.rotation = Quaternion.Euler(0, 0, rotationAngle + 90);
 
         // Draw debug line for testing
-        Debug.DrawLine(currentPosition, currentPosition + lastMovedDirection.normalized * moveForce, Color.green);
+        Debug.DrawLine(playerBrain.position, playerBrain.position + lastMovedDirection.normalized * moveForce, Color.green);
+
+        return playerBrain.position + lastMovedDirection.normalized * moveForce;
     }
 
     /// <summary>

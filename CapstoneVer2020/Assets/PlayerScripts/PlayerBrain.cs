@@ -24,6 +24,8 @@ public class PlayerBrain : MonoBehaviour
     public int maxHealth;
     public int gold;
 
+    public Vector2 position;
+
     public Image[] heartImage;
 
     private void Start()
@@ -53,6 +55,7 @@ public class PlayerBrain : MonoBehaviour
             default:
                 // Move the player
                 playerMovement.Movement();
+                position = gameObject.transform.position;
 
                 // Do dash mechanic if applicable
                 playerMovement.DashMovement(playerMovement.lastMovedDirection);
@@ -65,13 +68,11 @@ public class PlayerBrain : MonoBehaviour
                 break;
         }
     }
-
     public void GetGold(int goldToGive)
     {
         gold += goldToGive;
         goldTextDisplay.text = gold.ToString();
     }
-
     public void RemoveGold(int goldToTake)
     {
         if (gold >= goldToTake)
@@ -84,7 +85,6 @@ public class PlayerBrain : MonoBehaviour
             Debug.Log("Not Enough Gold");
         }
     }
-
     public void GetDamaged()
     {
         // Check if health is 0
@@ -102,7 +102,6 @@ public class PlayerBrain : MonoBehaviour
             heartImage[health].color = Color.black;
         }
     }
-
     public void RecoverHealth()
     {
         if (health >= maxHealth)
