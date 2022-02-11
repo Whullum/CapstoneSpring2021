@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
         // rotationAngle = Vector2.SignedAngle(Vector2.right, lastMovedDirection);
 
         // Rotate the player correctly
-        gameObject.transform.rotation = Quaternion.Euler(0, 0, rotationAngle + 90);
+        gameObject.transform.rotation = Quaternion.Euler(0, 0, rotationAngle - 90);
 
         // Draw debug line for testing
         Debug.DrawLine(playerBrain.position, playerBrain.position + lastMovedDirection.normalized * moveForce, Color.green);

@@ -31,11 +31,11 @@ public class EnemyBase : MonoBehaviour
             // Teleport Enemy for now just for testing
             //gameObject.transform.position = new Vector3(Random.Range(-10, 10), Random.Range(-4, 4), 0);
             collision.gameObject.GetComponent<AttackBehavior>().playerAttack.playerBrain.GetGold(goldAwarded);
-            //enemyHealth--;
+            enemyHealth--;
 
-            if (enemyHealth == 0)
+            if (enemyHealth <= 0)
             {
-                //Destroy(gameObject);
+                Destroy(gameObject);
             }
         }
         else if (collision.gameObject.layer == 6)

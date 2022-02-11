@@ -77,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 98cf453d7217146e2897c05463976391, type: 3}
-  m_Color: {r: 1, g: 0.9497752, b: 0.16509432, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 2cff9581c09b64061a29f6d4c6639d12, type: 3}
+  m_Color: {r: 0.9622642, g: 0.9043655, b: 0.013616921, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -230,8 +230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyManager: {fileID: 0}
-  enemyHealth: 0
-  goldAwarded: 0
+  enemyHealth: 1
+  goldAwarded: 5
   player: {fileID: 0}
   rigidbody: {fileID: 0}
   position: {x: 0, y: 0}
