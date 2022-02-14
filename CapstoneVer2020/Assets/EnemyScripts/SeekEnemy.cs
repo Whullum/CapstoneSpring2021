@@ -5,6 +5,7 @@ using UnityEngine;
 public class SeekEnemy : EnemyBase
 {
     public float moveForce;
+    public float maxSpeed;
 
     private void Update()
     {
@@ -17,11 +18,13 @@ public class SeekEnemy : EnemyBase
         Vector2 moveDirection = (player.position - this.position).normalized * moveForce;
 
         // Apply movement to rigidbody
-        rigidbody.velocity = moveDirection;
+        rigidbody.AddForce(moveDirection);
 
-        Debug.Log(moveDirection);
+        rigidbody.velocity = Vector2.ClampMagnitude(rigidbody.velocity, maxSpeed);
 
-        Debug.DrawLine(position, position + moveDirection.normalized * moveForce, Color.red);
+        //Debug.Log(moveDirection);
+
+        //Debug.DrawLine(position, position + moveDirection.normalized * moveForce, Color.red);
 
         return moveDirection;
     }

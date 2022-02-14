@@ -16,11 +16,13 @@ public class EnemyManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void Init()
     {
+        enemies.Clear();
+
         this.player = FindObjectOfType<PlayerBrain>();
 
-        enemies.AddRange(FindObjectsOfType<EnemyBase>());
+        enemies.AddRange(gameObject.GetComponent<DungeonManager>().currentDungeonRoom.GetComponentsInChildren<EnemyBase>());
 
         foreach (EnemyBase enemy in enemies)
         {
@@ -28,5 +30,10 @@ public class EnemyManager : MonoBehaviour
             enemy.enemyManager = this;
             enemy.Init();
         }
+    }
+
+    private void FindEnemies()
+    {
+
     }
 }

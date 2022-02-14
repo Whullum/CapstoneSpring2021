@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: DungeonRoomList
   m_EditorClassIdentifier: 
   dungeonRooms:
-  - {fileID: 2550893037662753076, guid: 3c3a1bb75461e4746b7f0bb97431af51, type: 3}
-  - {fileID: 5228398156623811110, guid: 5eaf1830a0f397b4e9b90818d29a0f23, type: 3}
-  - {fileID: 435522100425495357, guid: 405db32efef9441468ef6d27c866e6e5, type: 3}
-  - {fileID: 3682294248193369361, guid: a25ca8e80396fcb44a5c3882a5d44a61, type: 3}
+  - {fileID: 599662317383099611, guid: fcfafc01891438444a738b9ee5194274, type: 3}
+  - {fileID: 599662317383099611, guid: 2b62956fc49891d4e9892efe991f8667, type: 3}
+  - {fileID: 599662317383099611, guid: e9a7bf23eb4f03440a3428732a28477a, type: 3}

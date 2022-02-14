@@ -16,6 +16,7 @@ public class EnemyBase : MonoBehaviour
 
     public virtual void Init()
     {
+        player = enemyManager.player;
         position = gameObject.transform.position;
         rigidbody = GetComponent<Rigidbody2D>();
     }
@@ -33,16 +34,23 @@ public class EnemyBase : MonoBehaviour
             collision.gameObject.GetComponent<AttackBehavior>().playerAttack.playerBrain.GetGold(goldAwarded);
             enemyHealth--;
 
+            // Knockback
+            rigidbody.AddForce((this.position - player.position) * 2000);
+
             if (enemyHealth <= 0)
             {
                 Destroy(gameObject);
             }
         }
-        else if (collision.gameObject.layer == 6)
+    }
+
+    protected void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 6)
         {
-            // If colliding witha player, damage the player
+            // If colliding with a player, damage the player
             collision.gameObject.GetComponent<PlayerBrain>().GetDamaged();
-            Debug.Log("Player Collision");
+            //Debug.Log("Player Collision");
         }
     }
 }

@@ -7,7 +7,9 @@ using UnityEngine;
 public enum PlayerStates
 {
     NORMAL,
-    INTERACTING
+    INTERACTING,
+    DASHING,
+    INVULERABLE
 }
 
 public class PlayerBrain : MonoBehaviour
@@ -51,6 +53,7 @@ public class PlayerBrain : MonoBehaviour
                 // Interaction Mechanic
                 playerInteraction.ActivateInteraction();
                 break;
+            case PlayerStates.INVULERABLE:
             case PlayerStates.NORMAL:
             default:
                 // Move the player
@@ -85,23 +88,29 @@ public class PlayerBrain : MonoBehaviour
             Debug.Log("Not Enough Gold");
         }
     }
+
     public void GetDamaged()
     {
+        if (currentPlayerState == PlayerStates.INVULERABLE) return;
+
         // Check if health is 0
-        if (health < 0)
+        if (health <= 0)
         {
             // If it is, display game over for now
             Debug.Log("GAME OVER");
         }
         else
         {
-            // Deincrement health
-            health--;
+             // Deincrement health
+             health--;
 
-            // Change the color of hearts image to white (just testing for now)
-            heartImage[health].color = Color.black;
+             // Change the color of hearts image to white (just testing for now)
+             heartImage[health].color = Color.black;
+
+             StartCoroutine(StartIFrames());
         }
     }
+
     public void RecoverHealth()
     {
         if (health >= maxHealth)
@@ -113,5 +122,14 @@ public class PlayerBrain : MonoBehaviour
             heartImage[health].color = Color.white;
             health++;
         }
+    }
+
+    private IEnumerator StartIFrames()
+    {
+        currentPlayerState = PlayerStates.INVULERABLE;
+
+        yield return new WaitForSeconds(1);
+
+        currentPlayerState = PlayerStates.NORMAL;
     }
 }

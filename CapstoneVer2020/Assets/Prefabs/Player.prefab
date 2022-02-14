@@ -340,6 +340,7 @@ MonoBehaviour:
     m_Flags: 0
   rigidbody: {fileID: 7218453691658458624}
   playerBrain: {fileID: 0}
+  dashForce: 5
   lastMovedDirection: {x: 0, y: 0}
   spriteDirection: {x: 0, y: 0}
   rotationAngle: 0
@@ -425,7 +426,7 @@ MonoBehaviour:
   currentPlayerState: 0
   goldTextDisplay: {fileID: 0}
   health: 3
-  maxHealth: 0
+  maxHealth: 3
   gold: 0
   position: {x: 0, y: 0}
   heartImage:

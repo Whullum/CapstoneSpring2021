@@ -16,15 +16,14 @@ public class DungeonExitScript : MonoBehaviour
             // Unload the current dungeon room's entities
             //TODO
 
+            // Move player to correct position
+            collision.gameObject.transform.position = new Vector3(0, -6, -1);
+
             // Load in the next dungeon room
             //dungeonManager.currentDungeonRoom = Instantiate(dungeonManager.dungeonRooms.dungeonPrefabs[Random.Range(0, 3)]);
             dungeonManager.SpawnNewDungeonRoom();
 
             // Load in next dungeon room's entities
-
-
-            // Move player to correct position
-            collision.gameObject.transform.position = Vector3.zero;
 
             Debug.Log("Exit Player Collision");
         }

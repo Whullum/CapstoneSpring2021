@@ -146,9 +146,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4bd47967d18f234a81dacd1360c6529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 1
+  enemyManager: {fileID: 0}
+  enemyHealth: 2
   goldAwarded: 5
   player: {fileID: 0}
   rigidbody: {fileID: 0}
   position: {x: 0, y: 0}
   moveForce: 1
+  maxSpeed: 3

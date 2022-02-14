@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 facingDirectionVector;
 
     // Dash mechanic variables
-    private const float dashForce = 2.3f;
+    public float dashForce;
     private const float dashTimeStart = .1f;
     private float dashTimeCurrent;
     private Vector2 dashDirection;
