@@ -39,6 +39,7 @@ public class EnemyBase : MonoBehaviour
 
             if (enemyHealth <= 0)
             {
+                enemyManager.enemies.Remove(this);
                 Destroy(gameObject);
             }
         }

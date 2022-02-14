@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     private const float dashTimeStart = .1f;
     private float dashTimeCurrent;
     private Vector2 dashDirection;
+
+    [SerializeField]
     private bool isDashing;
 
     // Position variables
@@ -110,6 +112,11 @@ public class PlayerMovement : MonoBehaviour
         // Check if the player is dashing
         if (dashAction.triggered)
         {
+            if (playerBrain.currentPlayerState != PlayerStates.INVULERABLE)
+                StartCoroutine(playerBrain.StartIFrames(.2f));
+
+            //Debug.Log("Dash");
+
             // Set isDashing to true for cooldown and set cooldown timer
             isDashing = true;
             dashTimeCurrent = dashTimeStart;

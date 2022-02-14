@@ -8,7 +8,7 @@ public class DungeonExitScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 6)
+        if (collision.gameObject.layer == 6 && dungeonManager.enemyManager.EnemiesRemaining == 0)
         {
             // Unload the current dungeon room
             Destroy(dungeonManager.currentDungeonRoom);

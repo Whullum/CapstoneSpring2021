@@ -31,9 +31,4 @@ public class EnemyManager : MonoBehaviour
             enemy.Init();
         }
     }
-
-    private void FindEnemies()
-    {
-
-    }
 }

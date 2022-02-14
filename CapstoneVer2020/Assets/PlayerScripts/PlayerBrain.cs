@@ -68,6 +68,7 @@ public class PlayerBrain : MonoBehaviour
 
                 // Interaction Mechanic
                 playerInteraction.ActivateInteraction();
+
                 break;
         }
     }
@@ -107,7 +108,8 @@ public class PlayerBrain : MonoBehaviour
              // Change the color of hearts image to white (just testing for now)
              heartImage[health].color = Color.black;
 
-             StartCoroutine(StartIFrames());
+            if (currentPlayerState != PlayerStates.INVULERABLE)
+                StartCoroutine(StartIFrames(1));
         }
     }
 
@@ -124,11 +126,11 @@ public class PlayerBrain : MonoBehaviour
         }
     }
 
-    private IEnumerator StartIFrames()
+    public IEnumerator StartIFrames(float seconds)
     {
         currentPlayerState = PlayerStates.INVULERABLE;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(seconds);
 
         currentPlayerState = PlayerStates.NORMAL;
     }
