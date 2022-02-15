@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum PlayerStates
 {
@@ -94,23 +95,23 @@ public class PlayerBrain : MonoBehaviour
     {
         if (currentPlayerState == PlayerStates.INVULERABLE) return;
 
+         // Deincrement health
+         health--;
+
         // Check if health is 0
         if (health <= 0)
         {
             // If it is, display game over for now
             Debug.Log("GAME OVER");
+
+            SceneManager.LoadScene(0);
         }
-        else
-        {
-             // Deincrement health
-             health--;
 
-             // Change the color of hearts image to white (just testing for now)
-             heartImage[health].color = Color.black;
+        // Change the color of hearts image to white (just testing for now)
+        heartImage[health].color = Color.black;
 
-            if (currentPlayerState != PlayerStates.INVULERABLE)
+        if (currentPlayerState != PlayerStates.INVULERABLE)
                 StartCoroutine(StartIFrames(1));
-        }
     }
 
     public void RecoverHealth()
